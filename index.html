@@ -463,74 +463,71 @@
         </div>
     </section>
 
-    <section id="contact" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Contact</h2>
-            
-            <div class="max-w-3xl mx-auto bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-phone text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold mb-1">Téléphone</h3>
-                            <p>+212 659-584-879</p>
-                        </div>
+<section id="contact" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center">Contact</h2>
+        
+        <div class="max-w-3xl mx-auto bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Téléphone -->
+                <div class="flex items-start">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fas fa-phone text-primary"></i>
                     </div>
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-envelope text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold mb-1">Email</h3>
-                            <p>kistassyassin@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold mb-1">Localisation</h3>
-                            <p>Berrechid, Maroc</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fab fa-linkedin text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold mb-1">LinkedIn</h3>
-                            <p>Yassine KISTASS</p>
-                        </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">Téléphone</h3>
+                        <p>+212 659-584-879</p>
+                        <a href="tel:+212659584879" class="px-4 py-2 mt-2 inline-block bg-primary hover:bg-secondary text-white rounded-md transition-colors">
+                            Appeler
+                        </a>
                     </div>
                 </div>
-                
-                <form id="contact-form" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="name" class="block mb-2 font-medium">Nom</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 text-base rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block mb-2 font-medium">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 text-base rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
+
+                <!-- Email -->
+                <div class="flex items-start">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fas fa-envelope text-primary"></i>
                     </div>
                     <div>
-                        <label for="subject" class="block mb-2 font-medium">Sujet</label>
-                        <input type="text" id="subject" class="w-full px-4 py-3 text-base rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        <h3 class="text-lg font-semibold mb-1">Email</h3>
+                        <p>kistassyassin@gmail.com</p>
+                        <a href="mailto:kistassyassin@gmail.com" class="px-4 py-2 mt-2 inline-block bg-primary hover:bg-secondary text-white rounded-md transition-colors">
+                            Envoyer un Email
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Localisation -->
+                <div class="flex items-start">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
                     </div>
                     <div>
-                        <label for="message" class="block mb-2 font-medium">Message</label>
-                        <textarea id="message" rows="4" class="w-full px-4 py-3 text-base rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+                        <h3 class="text-lg font-semibold mb-1">Localisation</h3>
+                        <p>Berrechid, Maroc</p>
+                        <a href="https://www.google.com/maps?q=Berrechid,+Maroc" target="_blank" class="px-4 py-2 mt-2 inline-block bg-primary hover:bg-secondary text-white rounded-md transition-colors">
+                            Voir sur la carte
+                        </a>
                     </div>
-                    <button type="submit" class="w-full px-6 py-3 bg-primary hover:bg-secondary text-white rounded-md transition-colors">Envoyer le message</button>
-                </form>
+                </div>
+
+                <!-- LinkedIn -->
+                <div class="flex items-start">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fab fa-linkedin text-primary"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">LinkedIn</h3>
+                        <p>Yassine KISTASS</p>
+                        <a href="https://www.linkedin.com/in/yassine-kistass/" target="_blank" class="px-4 py-2 mt-2 inline-block bg-primary hover:bg-secondary text-white rounded-md transition-colors">
+                            Voir le profil
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
