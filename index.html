@@ -30,20 +30,7 @@
                     },
                 }
             }
-        }
-
-        // Check for dark mode preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark');
-        }
-
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        });
+        };
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -51,62 +38,6 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-        }
-
-        .skill-bar {
-            height: 8px;
-            border-radius: 4px;
-            background-color: #E5E7EB;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background-color: #5D5CDE;
-            border-radius: 4px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            transition: width 1s ease-out;
-        }
-
-        .dark .skill-bar {
-            background-color: #4B5563;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -37px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: #5D5CDE;
-            z-index: 1;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: -30px;
-            top: 8px;
-            bottom: -40px;
-            width: 2px;
-            background-color: #E5E7EB;
-        }
-
-        .dark .timeline-line {
-            background-color: #4B5563;
-        }
-
-        .timeline-item:last-child .timeline-line {
-            display: none;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
         }
 
         .animate-on-scroll {
@@ -136,31 +67,8 @@
                         <a href="#projects" class="hover:text-primary transition-colors">Projets</a>
                         <a href="#experience" class="hover:text-primary transition-colors">Expérience</a>
                         <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
-                        <button id="theme-toggle" class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
-                            <i class="fas fa-moon dark:hidden"></i>
-                            <i class="fas fa-sun hidden dark:block"></i>
-                        </button>
                     </div>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <button id="theme-toggle-mobile" class="mr-4 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
-                        <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:block"></i>
-                    </button>
-                    <button id="mobile-menu-button" class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-bg shadow-md">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">À propos</a>
-                <a href="#education" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Formation</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Compétences</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Projets</a>
-                <a href="#experience" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Expérience</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Contact</a>
             </div>
         </div>
     </nav>
@@ -179,355 +87,31 @@
                         <a href="#projects" class="px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-white rounded-md transition-colors">Voir mes projets</a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center md:justify-end">
-                    <div class="relative w-64 h-64 rounded-full overflow-hidden bg-primary/10 flex items-center justify-center">
-                        <i class="fas fa-user-circle text-8xl text-primary/50"></i>
-                    </div>
-                </div>
             </div>
         </div>
     </header>
 
-    <section id="about" class="py-16 md:py-24">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">À propos de moi</h2>
-            <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
-                <p class="text-lg leading-relaxed mb-6">
-                    En tant qu'étudiant en deuxième année de cycle d'ingénieur en mécatronique et systèmes intelligents, et membre du club Mécatronique Industrielle & Intelligence Embarquée, j'ai acquis diverses compétences techniques et managériales. Je suis prêt à appliquer mes connaissances et compétences dans de nouveaux défis.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    <div class="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fas fa-language text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Langues</h3>
-                        <ul class="space-y-1 text-center">
-                            <li>Arabe</li>
-                            <li>Français</li>
-                            <li>Anglais</li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fas fa-users text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Soft Skills</h3>
-                        <ul class="space-y-1 text-center">
-                            <li>Capacité d'adaptation</li>
-                            <li>Sens de la communication</li>
-                            <li>Travail en équipe</li>
-                            <li>Résilience</li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fas fa-heart text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Centres d'intérêts</h3>
-                        <ul class="space-y-1 text-center">
-                            <li>Bénévolat</li>
-                            <li>Sports</li>
-                            <li>Voyage</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="education" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Formation</h2>
-            <div class="relative max-w-3xl mx-auto pl-12">
-                <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
-                
-                <div class="relative mb-12 animate-on-scroll timeline-item">
-                    <div class="timeline-line"></div>
-                    <h3 class="text-xl font-semibold mb-2">Ingénieur en mécatronique et systèmes intelligents</h3>
-                    <p class="text-primary font-medium mb-2">Ecole nationale des sciences appliquées, Berrechid</p>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">2023 - 2026</p>
-                    <p>Formation d'ingénieur spécialisée en mécatronique et systèmes intelligents.</p>
-                </div>
-                
-                <div class="relative mb-12 animate-on-scroll timeline-item">
-                    <div class="timeline-line"></div>
-                    <h3 class="text-xl font-semibold mb-2">DEUG - Sciences de la Matière Physique</h3>
-                    <p class="text-primary font-medium mb-2">UNIVERSITÉ CHOUAIB DOUKKALI, El JADIDA</p>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">2021 - 2023</p>
-                </div>
-                
-                <div class="relative animate-on-scroll timeline-item">
-                    <h3 class="text-xl font-semibold mb-2">BACCALAURÉAT : sciences expérimentales</h3>
-                    <p class="text-primary font-medium mb-2">LYCEE QUALIFIANT MOHAMED MANSOUR, BERRECHID</p>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">2020 - 2021</p>
-                    <p>Filière internationale des sciences physiques - option : français</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="py-16 md:py-24">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Compétences</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 animate-on-scroll">
-                    <h3 class="text-xl font-semibold mb-6 flex items-center">
-                        <i class="fas fa-code text-primary mr-3"></i>
-                        Compétences techniques
-                    </h3>
-                    <div class="space-y-5">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>Programmation (Python, C, C++)</span>
-                                <span class="text-primary">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>IoT (Arduino, ESP32, Raspberry Pi)</span>
-                                <span class="text-primary">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>Protocoles (HTTP/HTTPS, MQTT, LoRa)</span>
-                                <span class="text-primary">80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>Bus de communication (CAN, I2C, UART)</span>
-                                <span class="text-primary">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>Intelligence artificielle (ML, Deep Learning)</span>
-                                <span class="text-primary">70%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 animate-on-scroll">
-                    <h3 class="text-xl font-semibold mb-6 flex items-center">
-                        <i class="fas fa-tools text-primary mr-3"></i>
-                        Logiciels &amp; Technologies
-                    </h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-database text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">MySQL</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-cubes text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">CATIA v5</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-microchip text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Node-RED</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-chart-line text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Grafana</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-server text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">InfluxDB</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-robot text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Robotique</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fab fa-linux text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Linux Embarqué</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-brain text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">CNN / KNN</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-file-word text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Office</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Projets</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md overflow-hidden animate-on-scroll">
-                    <div class="relative h-48 bg-primary/10 flex items-center justify-center">
-                        <i class="fas fa-car text-primary text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">Voiture autonome suiveuse de ligne</h3>
-                        <ul class="space-y-2 mb-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Etude sur les capteurs pour suivie la ligne et les moteurs DC</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Programmation Arduino</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Assemblage des composants de la voiture</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md overflow-hidden animate-on-scroll">
-                    <div class="relative h-48 bg-primary/10 flex items-center justify-center">
-                        <i class="fas fa-cloud-sun text-primary text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">Station météo intelligente</h3>
-                        <ul class="space-y-2 mb-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Etude sur les capteurs météorologiques</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Programmation avec ESP32, Arduino, Raspberry Pi</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Création d'une interface pour l'affichage des données en temps réel et contrôle de l'arrosage</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Intégration des algorithmes d'intelligence artificielle pour prédire l'arrosage et les précipitations</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="py-16 md:py-24">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Expérience professionnelle</h2>
-            
-            <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
-                <div class="flex flex-col md:flex-row">
-                    <div class="md:w-1/4 mb-4 md:mb-0">
-                        <p class="text-primary font-medium">Août - Septembre 2024</p>
-                    </div>
-                    <div class="md:w-3/4">
-                        <h3 class="text-xl font-semibold mb-2">Stage d'initiation</h3>
-                        <p class="text-gray-500 dark:text-gray-400 mb-4">SICDA, Berrechid</p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-primary text-xs mt-1.5 mr-2"></i>
-                                <span>Observation et analyse de la chaîne du production de tuyau PE, depuis les matières premières jusqu'au produit fini.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-primary text-xs mt-1.5 mr-2"></i>
-                                <span>Observation des différentes opérations pour la fabrication et réparation des pièces dans l'atelier mécanique.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-primary text-xs mt-1.5 mr-2"></i>
-                                <span>Acquisition des concepts de résolution des problèmes dans l'atelier électrique, et analyse des différents composants électriques dans les armoires (variateurs, relais, disjoncteurs...).</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="contact" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold mb-12 text-center">Contact</h2>
-            
-            <div class="max-w-3xl mx-auto bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-phone text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold mb-1">Téléphone</h3>
-                            <p>+212 659-584-879</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-envelope text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold mb-1">Email</h3>
-                            <p>kistassyassin@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold mb-1">Localisation</h3>
-                            <p>Berrechid, Maroc</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fab fa-linkedin text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold mb-1">LinkedIn</h3>
-                            <p>Yassine KISTASS</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <form id="contact-form" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="name" class="block mb-2 font-medium">Nom</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 text-base rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block mb-2 font-medium">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 text-base rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="subject" class="block mb-2 font-medium">Sujet</label>
-                        <input type="text" id="subject" class="w-full px-4 py-3 text-base rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                    </div>
-                    <div>
-                        <label for="message" class="block mb-2 font-medium">Message</label>
-                        <textarea id="message" rows="4" class="w-full px-4 py-3 text-base rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
-                    </div>
-                    <button type="submit" class="w-full px-6 py-3 bg-primary hover:bg-secondary text-white rounded-md transition-colors">Envoyer le message</button>
-                </form>
+            <p class="text-center mb-6">
+                Vous pouvez me contacter via les options ci-dessous :
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                <!-- Bouton Email -->
+                <a href="mailto:kistassyassin@gmail.com" class="px-6 py-3 bg-primary hover:bg-secondary text-white rounded-md transition-colors">
+                    Envoyer un Email
+                </a>
+
+                <!-- Bouton LinkedIn -->
+                <a href="https://www.linkedin.com/in/yassine-kistass/" target="_blank" class="px-6 py-3 bg-primary hover:bg-secondary text-white rounded-md transition-colors">
+                    Contacter sur LinkedIn
+                </a>
+
+                <!-- Bouton WhatsApp -->
+                <a href="https://wa.me/212659584879" target="_blank" class="px-6 py-3 bg-primary hover:bg-secondary text-white rounded-md transition-colors">
+                    Contacter sur WhatsApp
+                </a>
             </div>
         </div>
     </section>
@@ -552,42 +136,6 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking on a link
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Dark mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-        }
-
-        themeToggle.addEventListener('click', toggleDarkMode);
-        themeToggleMobile.addEventListener('click', toggleDarkMode);
-
-        // Skill bar animation
-        function animateSkillBars() {
-            const skillBars = document.querySelectorAll('.skill-progress');
-            skillBars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                bar.style.width = width;
-            });
-        }
-
         // Animate on scroll
         const observerOptions = {
             root: null,
@@ -599,11 +147,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    if (entry.target.querySelector('.skill-progress')) {
-                        setTimeout(() => {
-                            animateSkillBars();
-                        }, 200);
-                    }
                 }
             });
         }, observerOptions);
@@ -611,16 +154,6 @@
         const animatedElements = document.querySelectorAll('.animate-on-scroll');
         animatedElements.forEach(element => {
             observer.observe(element);
-        });
-
-        // Form submission (mock)
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // In a real application, you would send the form data to a server
-            alert('Votre message a été envoyé avec succès! (Simulé)');
-            contactForm.reset();
         });
     </script>
 </body>
