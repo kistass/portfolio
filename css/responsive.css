@@ -1,0 +1,155 @@
+/* responsive.css - Styles pour la responsivité */
+
+/* Variables pour les breakpoints */
+:root {
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+  }
+  
+  /* Mobile First - Styles pour appareils de petite taille */
+  @media (max-width: 639px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    h1 {
+      font-size: 1.75rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    .supply-chain-container {
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+    
+    .supply-node {
+      max-width: 100%;
+      margin: 0 auto;
+      width: 90%;
+    }
+    
+    .product-flow-arrow,
+    .order-flow-arrow {
+      display: none;
+    }
+    
+    /* Alternative mobile pour la visualisation de la chaîne */
+    .supply-node::after {
+      content: "";
+      position: absolute;
+      height: 20px;
+      width: 2px;
+      background-color: var(--primary-color);
+      bottom: -20px;
+      left: 50%;
+      z-index: 1;
+    }
+    
+    .supply-node:last-child::after {
+      display: none;
+    }
+    
+    /* Taille des boutons plus grande sur mobile pour faciliter le tapotement */
+    button {
+      padding: 0.75rem 1rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* Tablettes */
+  @media (min-width: 640px) and (max-width: 767px) {
+    .supply-chain-container {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .supply-node {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+    
+    .chart-container {
+      height: 280px;
+    }
+  }
+  
+  /* Tablettes larges */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .supply-chain-container {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    .supply-node {
+      flex-basis: calc(50% - 1.5rem);
+      max-width: calc(50% - 1.5rem);
+    }
+  }
+  
+  /* Écrans moyens - Bureaux */
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+      margin: 0 auto;
+    }
+    
+    .supply-chain-container {
+      flex-direction: row;
+    }
+    
+    .chart-container {
+      height: 350px;
+    }
+  }
+  
+  /* Grands écrans */
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1200px;
+    }
+    
+    .game-section {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    .chart-container {
+      height: 400px;
+    }
+  }
+  
+  /* Orientation des appareils mobiles */
+  @media (orientation: landscape) and (max-height: 500px) {
+    .container {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .supply-chain-container {
+      margin: 0.5rem 0;
+    }
+  }
+  
+  /* Appareils avec préférence pour la réduction de mouvement */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }

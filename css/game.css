@@ -1,0 +1,171 @@
+/* game.css - Styles spécifiques au jeu Beer Game */
+
+/* Supply Chain Visualization */
+.supply-chain-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2rem 0;
+    position: relative;
+    min-height: 120px;
+  }
+  
+  .supply-node {
+    flex: 1;
+    max-width: 200px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Flèches pour le flux de produits et commandes */
+  .product-flow-arrow,
+  .order-flow-arrow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 4px;
+  }
+  
+  .product-flow-arrow {
+    top: 30%;
+    background: linear-gradient(90deg, transparent, var(--primary-color) 50%, var(--primary-color));
+  }
+  
+  .order-flow-arrow {
+    bottom: 20%;
+    background: linear-gradient(90deg, var(--warning-color), var(--warning-color) 50%, transparent);
+  }
+  
+  .arrow-label {
+    position: absolute;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  
+  .product-flow-arrow .arrow-label {
+    top: -20px;
+    right: 0;
+    background-color: var(--primary-color);
+  }
+  
+  .order-flow-arrow .arrow-label {
+    top: -20px; 
+    left: 0;
+    background-color: var(--warning-color);
+  }
+  
+  /* Styles des rôles */
+  .factory-color {
+    background-color: rgba(239, 68, 68, 0.2);
+  }
+  
+  .distributor-color {
+    background-color: rgba(245, 158, 11, 0.2);
+  }
+  
+  .wholesaler-color {
+    background-color: rgba(16, 185, 129, 0.2);
+  }
+  
+  .retailer-color {
+    background-color: rgba(59, 130, 246, 0.2);
+  }
+  
+  .dark .factory-color {
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+  
+  .dark .distributor-color {
+    background-color: rgba(245, 158, 11, 0.1);
+  }
+  
+  .dark .wholesaler-color {
+    background-color: rgba(16, 185, 129, 0.1);
+  }
+  
+  .dark .retailer-color {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+  
+  /* Styles pour la carte graphique de performance */
+  .chart-container {
+    position: relative;
+    height: 300px;
+    max-height: 50vh;
+    width: 100%;
+  }
+  
+  /* Cards sélectionnables pour les modes et rôles */
+  .selectable-card {
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .selectable-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .selectable-card.selected {
+    border-color: var(--primary-color);
+  }
+  
+  /* Animation pour les commandes et livraisons */
+  .shipment-animation {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Toast notifications pour événements de jeu */
+  .game-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 50;
+    max-width: 300px;
+  }
+  
+  .dark .game-toast {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  
+  .game-toast.info {
+    border-left: 4px solid var(--primary-color);
+  }
+  
+  .game-toast.warning {
+    border-left: 4px solid var(--warning-color);
+  }
+  
+  .game-toast.success {
+    border-left: 4px solid var(--success-color);
+  }
+  
+  .game-toast.error {
+    border-left: 4px solid var(--danger-color);
+  }
