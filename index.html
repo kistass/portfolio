@@ -6,28 +6,67 @@
     <title>Yassine KISTASS | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#5D5CDE',
-                        secondary: '#4F4FC6',
+                        primary: {
+                            DEFAULT: '#5D5CDE',
+                            50: '#F5F5FF',
+                            100: '#EDEDFE',
+                            200: '#D6D6FD',
+                            300: '#ADADFA',
+                            400: '#8584F0',
+                            500: '#5D5CDE',
+                            600: '#3B3AB9',
+                            700: '#2D2D8E',
+                            800: '#1F1F60',
+                            900: '#121237',
+                        },
+                        secondary: {
+                            DEFAULT: '#4F4FC6',
+                            lighter: '#7A79E3',
+                            darker: '#3A3A99',
+                        },
                         light: {
                             bg: '#FFFFFF',
                             text: '#333333',
                             card: '#F9F9F9',
                         },
                         dark: {
-                            bg: '#181818',
+                            bg: '#111827',
                             text: '#E5E5E5',
-                            card: '#262626',
+                            card: '#1F2937',
+                            cardHover: '#374151',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 15s ease infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        gradient: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+                        'soft-xl': '0 20px 27px 0 rgba(0, 0, 0, 0.05)',
+                        'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+                    }
                 }
             }
         }
@@ -46,13 +85,50 @@
         });
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
         
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
+        /* Animated Background */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #5D5CDE, #7A79E3, #6E6DDF, #4F4FC6);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .glass-card {
+            background: rgba(31, 41, 55, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Skill Bar */
         .skill-bar {
             height: 8px;
             border-radius: 4px;
@@ -63,226 +139,548 @@
 
         .skill-progress {
             height: 100%;
-            background-color: #5D5CDE;
+            background: linear-gradient(90deg, #5D5CDE, #7A79E3);
             border-radius: 4px;
             position: absolute;
             left: 0;
             top: 0;
             width: 0;
-            transition: width 1s ease-out;
+            transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .dark .skill-bar {
-            background-color: #4B5563;
+            background-color: #374151;
         }
 
+        /* Timeline */
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -37px;
+            left: -39px;
             top: 0;
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background-color: #5D5CDE;
-            z-index: 1;
+            z-index: 2;
+            box-shadow: 0 0 0 4px rgba(93, 92, 222, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            background-color: #7A79E3;
+            box-shadow: 0 0 0 6px rgba(93, 92, 222, 0.3);
         }
 
         .timeline-line {
             position: absolute;
             left: -30px;
-            top: 8px;
+            top: 10px;
             bottom: -40px;
             width: 2px;
-            background-color: #E5E7EB;
+            background: linear-gradient(to bottom, #5D5CDE, rgba(93, 92, 222, 0.2));
         }
 
         .dark .timeline-line {
-            background-color: #4B5563;
+            background: linear-gradient(to bottom, #7A79E3, rgba(122, 121, 227, 0.1));
         }
 
         .timeline-item:last-child .timeline-line {
             display: none;
         }
 
-        .project-card:hover .project-overlay {
-            opacity: 1;
+        /* Card Hover Effects */
+        .hover-card {
+            transition: all 0.3s ease;
         }
 
-        .animate-on-scroll {
+        .hover-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #1F2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #5D5CDE;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7A79E3;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.3s;
         }
 
-        .animate-on-scroll.visible {
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
             opacity: 1;
-            transform: translateY(0);
+        }
+        
+        /* Floating Animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Modern Circle Progress */
+        .progress-circle {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .progress-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 6;
+            stroke-linecap: round;
+        }
+        
+        .progress-circle .bg {
+            stroke: #E5E7EB;
+        }
+        
+        .dark .progress-circle .bg {
+            stroke: #374151;
+        }
+        
+        .progress-circle .fg {
+            stroke: #5D5CDE;
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: calc(251.2 - (251.2 * var(--percentage)) / 100);
+            transition: stroke-dashoffset 2s ease;
+        }
+        
+        .progress-circle .percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 600;
+            color: #5D5CDE;
+        }
+        
+        /* Subtle hover effects */
+        .btn-primary {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+        
+        .btn-primary:hover::after {
+            transform: translateX(0);
+        }
+        
+        .btn-primary span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Custom Hamburger Menu */
+        .hamburger {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: currentColor;
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 6px;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 12px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 18px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            top: 12px;
+            transform: rotate(135deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            top: 12px;
+            transform: rotate(-135deg);
         }
     </style>
 </head>
 <body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text">
-    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md shadow-sm">
+    <nav class="fixed w-full top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md shadow-md transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <span class="text-xl font-bold text-primary">YK.</span>
+                    <a href="#" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-lighter">YK.</a>
                 </div>
                 <div class="hidden md:block">
-                    <div class="flex items-center space-x-6">
-                        <a href="#about" class="hover:text-primary transition-colors">À propos</a>
-                        <a href="#education" class="hover:text-primary transition-colors">Formation</a>
-                        <a href="#skills" class="hover:text-primary transition-colors">Compétences</a>
-                        <a href="#projects" class="hover:text-primary transition-colors">Projets</a>
-                        <a href="#experience" class="hover:text-primary transition-colors">Expérience</a>
-                        <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
-                        <button id="theme-toggle" class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
-                            <i class="fas fa-moon dark:hidden"></i>
-                            <i class="fas fa-sun hidden dark:block"></i>
+                    <div class="flex items-center space-x-8">
+                        <a href="#about" class="hover:text-primary-500 transition-colors font-medium relative group">
+                            À propos
+                            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#education" class="hover:text-primary-500 transition-colors font-medium relative group">
+                            Formation
+                            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#skills" class="hover:text-primary-500 transition-colors font-medium relative group">
+                            Compétences
+                            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#projects" class="hover:text-primary-500 transition-colors font-medium relative group">
+                            Projets
+                            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#experience" class="hover:text-primary-500 transition-colors font-medium relative group">
+                            Expérience
+                            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#contact" class="hover:text-primary-500 transition-colors font-medium relative group">
+                            Contact
+                            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <button id="theme-toggle" class="ml-4 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-moon text-gray-700 dark:hidden"></i>
+                            <i class="fas fa-sun hidden text-yellow-400 dark:block"></i>
                         </button>
                     </div>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="theme-toggle-mobile" class="mr-4 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
-                        <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:block"></i>
+                    <button id="theme-toggle-mobile" class="mr-4 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-gray-700 dark:hidden"></i>
+                        <i class="fas fa-sun hidden text-yellow-400 dark:block"></i>
                     </button>
-                    <button id="mobile-menu-button" class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
-                        <i class="fas fa-bars"></i>
+                    <button id="mobile-menu-button" class="hamburger text-gray-500 dark:text-gray-400">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-bg shadow-md">
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-bg shadow-lg rounded-b-lg overflow-hidden transition-all duration-300">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">À propos</a>
-                <a href="#education" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Formation</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Compétences</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Projets</a>
-                <a href="#experience" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Expérience</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors">Contact</a>
+                <a href="#about" class="block px-4 py-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-500 transition-colors font-medium">À propos</a>
+                <a href="#education" class="block px-4 py-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-500 transition-colors font-medium">Formation</a>
+                <a href="#skills" class="block px-4 py-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-500 transition-colors font-medium">Compétences</a>
+                <a href="#projects" class="block px-4 py-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-500 transition-colors font-medium">Projets</a>
+                <a href="#experience" class="block px-4 py-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-500 transition-colors font-medium">Expérience</a>
+                <a href="#contact" class="block px-4 py-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-500 transition-colors font-medium">Contact</a>
             </div>
         </div>
     </nav>
 
-    <header class="relative bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/5 dark:to-secondary/5">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+    <header class="pt-28 pb-20 relative animated-gradient overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-black/10 to-transparent dark:from-black/30 dark:to-transparent"></div>
+        <div class="absolute -right-24 -top-24 w-96 h-96 bg-primary-400/20 dark:bg-primary-400/10 rounded-full blur-3xl"></div>
+        <div class="absolute -left-24 top-36 w-72 h-72 bg-secondary-lighter/20 dark:bg-secondary-lighter/10 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl sm:text-5xl font-bold mb-4">
-                        <span class="block">Bonjour, je suis</span>
-                        <span class="text-primary block">Yassine KISTASS</span>
+                <div class="md:w-1/2 mb-16 md:mb-0" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-block px-3 py-1 mb-6 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                        Bienvenue sur mon portfolio
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white">
+                        <span class="block mb-2">Bonjour, je suis</span>
+                        <span class="text-white block relative">
+                            Yassine KISTASS
+                            <span class="absolute -bottom-2 left-0 w-24 h-1 bg-white rounded-full"></span>
+                        </span>
                     </h1>
-                    <p class="text-xl mb-6">Futur Ingénieur en génie mécatronique et systèmes intelligents</p>
+                    <p class="text-xl mb-8 text-white/90 max-w-lg leading-relaxed">
+                        Futur Ingénieur en génie mécatronique et systèmes intelligents, passionné par l'innovation technologique.
+                    </p>
                     <div class="flex space-x-4">
-                        <a href="#contact" class="px-6 py-3 bg-primary hover:bg-secondary text-white rounded-md transition-colors">Me contacter</a>
-                        <a href="#projects" class="px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-white rounded-md transition-colors">Voir mes projets</a>
+                        <a href="#contact" class="btn-primary px-8 py-4 bg-white text-primary-600 font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+                            <span>Me contacter</span>
+                        </a>
+                        <a href="#projects" class="px-8 py-4 border-2 border-white text-white font-medium rounded-full hover:bg-white/10 transition-all duration-300">
+                            Voir mes projets
+                        </a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center md:justify-end">
-                    <div class="relative w-64 h-64 rounded-full overflow-hidden bg-white border-4 border-primary shadow-lg">
+                <div class="md:w-1/2 flex justify-center md:justify-end" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="float relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden bg-white border-4 border-white shadow-2xl">
                         <img src="https://pfst.cf2.poecdn.net/base/image/54c03049026b1c49dda12f251842fcc57f230d0af36855f448b5b39b05a14356?w=600&h=600" alt="Yassine KISTASS" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+                <path fill="#FFFFFF" fill-opacity="1" d="M0,128L80,117.3C160,107,320,85,480,90.7C640,96,800,128,960,133.3C1120,139,1280,117,1360,106.7L1440,96L1440,150L1360,150C1280,150,1120,150,960,150C800,150,640,150,480,150C320,150,160,150,80,150L0,150Z" class="dark:hidden"></path>
+                <path fill="#111827" fill-opacity="1" d="M0,128L80,117.3C160,107,320,85,480,90.7C640,96,800,128,960,133.3C1120,139,1280,117,1360,106.7L1440,96L1440,150L1360,150C1280,150,1120,150,960,150C800,150,640,150,480,150C320,150,160,150,80,150L0,150Z" class="hidden dark:block"></path>
+            </svg>
         </div>
     </header>
 
-    <section id="about" class="py-16 md:py-24">
+    <section id="about" class="py-20">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">À propos de moi</h2>
-            <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
-                <p class="text-lg leading-relaxed mb-6">
-                    En tant qu'étudiant en deuxième année de cycle d'ingénieur en mécatronique et systèmes intelligents, et membre du club Mécatronique Industrielle & Intelligence Embarquée, j'ai acquis diverses compétences techniques et managériales. Je suis prêt à appliquer mes connaissances et compétences dans de nouveaux défis.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    <div class="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fas fa-language text-primary text-xl"></i>
+            <div class="flex flex-col items-center mb-12" data-aos="fade-up">
+                <div class="inline-block px-3 py-1 mb-3 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                    Qui suis-je
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center relative">
+                    À propos de moi
+                    <span class="block mt-2 mx-auto w-20 h-1 bg-primary-500 rounded-full"></span>
+                </h2>
+            </div>
+            
+            <div class="bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-8 md:p-10 relative">
+                    <div class="absolute -right-24 -top-24 w-64 h-64 bg-primary-100/70 dark:bg-primary-900/10 rounded-full blur-3xl"></div>
+                    <div class="relative">
+                        <p class="text-lg leading-relaxed mb-10 max-w-3xl">
+                            En tant qu'étudiant en deuxième année de cycle d'ingénieur en mécatronique et systèmes intelligents, et membre du club Mécatronique Industrielle & Intelligence Embarquée, j'ai acquis diverses compétences techniques et managériales. Je suis prêt à appliquer mes connaissances et compétences dans de nouveaux défis.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                            <div class="hover-card bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm transition-all hover:shadow-md">
+                                <div class="w-16 h-16 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-4 text-primary-500">
+                                    <i class="fas fa-language text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4">Langues</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Arabe</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Français</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Anglais</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="hover-card bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm transition-all hover:shadow-md">
+                                <div class="w-16 h-16 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-4 text-primary-500">
+                                    <i class="fas fa-users text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4">Soft Skills</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Capacité d'adaptation</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Sens de la communication</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Travail en équipe</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Résilience</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Esprit de responsabilité</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Gestion de temps</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="hover-card bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm transition-all hover:shadow-md">
+                                <div class="w-16 h-16 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-4 text-primary-500">
+                                    <i class="fas fa-heart text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4">Centres d'intérêts</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Bénévolat</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Sports</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Voyage</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2">Langues</h3>
-                        <ul class="space-y-1 text-center">
-                            <li>Arabe</li>
-                            <li>Français</li>
-                            <li>Anglais</li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fas fa-users text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Soft Skills</h3>
-                        <ul class="space-y-1 text-center">
-                            <li>Capacité d'adaptation</li>
-                            <li>Sens de la communication</li>
-                            <li>Travail en équipe</li>
-                            <li>Résilience</li>
-                            <li>Esprit de responsabilité</li>
-                            <li>Gestion de temps</li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fas fa-heart text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Centres d'intérêts</h3>
-                        <ul class="space-y-1 text-center">
-                            <li>Bénévolat</li>
-                            <li>Sports</li>
-                            <li>Voyage</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="education" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Formation</h2>
+    <section id="education" class="py-20 bg-gray-50 dark:bg-gray-900 relative">
+        <div class="absolute -right-24 top-24 w-72 h-72 bg-primary-100/50 dark:bg-primary-900/10 rounded-full blur-3xl"></div>
+        <div class="absolute -left-24 bottom-24 w-72 h-72 bg-secondary-lighter/30 dark:bg-secondary-lighter/5 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+                <div class="inline-block px-3 py-1 mb-3 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                    Parcours académique
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center relative">
+                    Formation
+                    <span class="block mt-2 mx-auto w-20 h-1 bg-primary-500 rounded-full"></span>
+                </h2>
+            </div>
+            
             <div class="relative max-w-3xl mx-auto pl-12">
-                <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
                 
-                <div class="relative mb-12 animate-on-scroll timeline-item">
-                    <div class="timeline-line"></div>
-                    <h3 class="text-xl font-semibold mb-2">Ingénieur en mécatronique et systèmes intelligents</h3>
-                    <p class="text-primary font-medium mb-2">Ecole nationale des sciences appliquées, Berrechid</p>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">2023 - 2026</p>
-                    <p>Formation d'ingénieur spécialisée en mécatronique et systèmes intelligents.</p>
+                <div class="relative mb-16" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-item relative z-10">
+                        <div class="timeline-line"></div>
+                        <div class="hover-card bg-white dark:bg-dark-card rounded-xl shadow-soft p-6 transition-all duration-300">
+                            <div class="inline-block px-3 py-1 mb-4 rounded-lg text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                                2023 - 2026
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Ingénieur en mécatronique et systèmes intelligents</h3>
+                            <p class="text-primary-500 font-medium mb-4">Ecole nationale des sciences appliquées, Berrechid</p>
+                            <p class="text-gray-600 dark:text-gray-300">Formation d'ingénieur spécialisée en mécatronique et systèmes intelligents.</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="relative mb-12 animate-on-scroll timeline-item">
-                    <div class="timeline-line"></div>
-                    <h3 class="text-xl font-semibold mb-2">DEUG - Sciences de la Matière Physique</h3>
-                    <p class="text-primary font-medium mb-2">UNIVERSITÉ CHOUAIB DOUKKALI, El JADIDA</p>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">2021 - 2023</p>
+                <div class="relative mb-16" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-item relative z-10">
+                        <div class="timeline-line"></div>
+                        <div class="hover-card bg-white dark:bg-dark-card rounded-xl shadow-soft p-6 transition-all duration-300">
+                            <div class="inline-block px-3 py-1 mb-4 rounded-lg text-sm font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
+                                2021 - 2023
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">DEUG - Sciences de la Matière Physique</h3>
+                            <p class="text-primary-500 font-medium mb-4">UNIVERSITÉ CHOUAIB DOUKKALI, El JADIDA</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="relative animate-on-scroll timeline-item">
-                    <h3 class="text-xl font-semibold mb-2">BACCALAURÉAT : sciences expérimentales</h3>
-                    <p class="text-primary font-medium mb-2">LYCEE QUALIFIANT MOHAMED MANSOUR, BERRECHID</p>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">2020 - 2021</p>
-                    <p>Filière internationale des sciences physiques - option : français</p>
+                <div class="relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-item relative z-10">
+                        <div class="hover-card bg-white dark:bg-dark-card rounded-xl shadow-soft p-6 transition-all duration-300">
+                            <div class="inline-block px-3 py-1 mb-4 rounded-lg text-sm font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">
+                                2020 - 2021
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">BACCALAURÉAT : sciences expérimentales</h3>
+                            <p class="text-primary-500 font-medium mb-4">LYCEE QUALIFIANT MOHAMED MANSOUR, BERRECHID</p>
+                            <p class="text-gray-600 dark:text-gray-300">Filière internationale des sciences physiques - option : français</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="py-16 md:py-24">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Compétences</h2>
+    <section id="skills" class="py-20 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-50/70 to-transparent dark:from-primary-900/5 dark:to-transparent"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+                <div class="inline-block px-3 py-1 mb-3 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                    Expertise
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center relative">
+                    Compétences
+                    <span class="block mt-2 mx-auto w-20 h-1 bg-primary-500 rounded-full"></span>
+                </h2>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 animate-on-scroll">
-                    <h3 class="text-xl font-semibold mb-6 flex items-center">
-                        <i class="fas fa-code text-primary mr-3"></i>
+                <div class="bg-white dark:bg-dark-card rounded-2xl shadow-soft p-8" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold mb-8 flex items-center">
+                        <i class="fas fa-code text-primary-500 mr-3"></i>
                         Compétences techniques
                     </h3>
-                    <div class="space-y-5">
+                    <div class="space-y-8">
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span>Programmation (Python, C, C++)</span>
-                                <span class="text-primary">90%</span>
+                                <span class="font-medium">Programmation (Python, C, C++)</span>
+                                <span class="text-primary-500 font-semibold">90%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="90%"></div>
@@ -290,8 +688,8 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span>IoT (Arduino, ESP32, Raspberry Pi)</span>
-                                <span class="text-primary">85%</span>
+                                <span class="font-medium">IoT (Arduino, ESP32, Raspberry Pi)</span>
+                                <span class="text-primary-500 font-semibold">85%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="85%"></div>
@@ -299,8 +697,8 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span>Protocoles (HTTP/HTTPS, MQTT, LoRa)</span>
-                                <span class="text-primary">80%</span>
+                                <span class="font-medium">Protocoles (HTTP/HTTPS, MQTT, LoRa)</span>
+                                <span class="text-primary-500 font-semibold">80%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="80%"></div>
@@ -308,8 +706,8 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span>Bus de communication (CAN, I2C, UART)</span>
-                                <span class="text-primary">75%</span>
+                                <span class="font-medium">Bus de communication (CAN, I2C, UART)</span>
+                                <span class="text-primary-500 font-semibold">75%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="75%"></div>
@@ -317,8 +715,8 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span>Intelligence artificielle (ML, Deep Learning)</span>
-                                <span class="text-primary">70%</span>
+                                <span class="font-medium">Intelligence artificielle (ML, Deep Learning)</span>
+                                <span class="text-primary-500 font-semibold">70%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="70%"></div>
@@ -327,137 +725,167 @@
                     </div>
                 </div>
                 
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 animate-on-scroll">
-                    <h3 class="text-xl font-semibold mb-6 flex items-center">
-                        <i class="fas fa-tools text-primary mr-3"></i>
+                <div class="bg-white dark:bg-dark-card rounded-2xl shadow-soft p-8" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold mb-8 flex items-center">
+                        <i class="fas fa-tools text-primary-500 mr-3"></i>
                         Logiciels &amp; Technologies
                     </h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-database text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">MySQL</span>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-5">
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-database text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">MySQL</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-cubes text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">CATIA v5</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-cubes text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">CATIA v5</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-draw-polygon text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">SolidWorks</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-draw-polygon text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">SolidWorks</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-drafting-compass text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">AutoCAD</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-drafting-compass text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">AutoCAD</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-microchip text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Node-RED</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-microchip text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">Node-RED</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-chart-line text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Grafana</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-chart-line text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">Grafana</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-server text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">InfluxDB</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-server text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">InfluxDB</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-cloud text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">ThingSpeak</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-cloud text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">ThingSpeak</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-cloud-upload-alt text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">HiveMQ</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-robot text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Robotique</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fab fa-linux text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Linux Embarqué</span>
-                        </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-brain text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">CNN / KNN</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">Robotique</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 animate-on-scroll">
-                    <h3 class="text-xl font-semibold mb-6 flex items-center">
-                        <i class="fas fa-cog text-primary mr-3"></i>
+                <div class="bg-white dark:bg-dark-card rounded-2xl shadow-soft p-8" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold mb-8 flex items-center">
+                        <i class="fas fa-cog text-primary-500 mr-3"></i>
                         Compétences professionnelles
                     </h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Fabrication mécanique</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Résistance des matériaux</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Transfert thermique</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Machines électriques</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Automatique</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Collecte et traitement de données IoT</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Stockage dans InfluxDB et MongoDB</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Analyse avec MySQL</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Visualisation via Grafana</span>
-                        </li>
-                    </ul>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-cogs text-primary-500"></i>
+                                <span class="font-medium">Fabrication mécanique</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-hammer text-primary-500"></i>
+                                <span class="font-medium">Résistance des matériaux</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-temperature-high text-primary-500"></i>
+                                <span class="font-medium">Transfert thermique</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-bolt text-primary-500"></i>
+                                <span class="font-medium">Machines électriques</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-cog text-primary-500"></i>
+                                <span class="font-medium">Automatique</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-database text-primary-500"></i>
+                                <span class="font-medium">Traitement de données IoT</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-server text-primary-500"></i>
+                                <span class="font-medium">InfluxDB & MongoDB</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-chart-line text-primary-500"></i>
+                                <span class="font-medium">Visualisation Grafana</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 animate-on-scroll">
-                    <h3 class="text-xl font-semibold mb-6 flex items-center">
-                        <i class="fas fa-file-alt text-primary mr-3"></i>
+                <div class="bg-white dark:bg-dark-card rounded-2xl shadow-soft p-8" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-2xl font-bold mb-8 flex items-center">
+                        <i class="fas fa-file-alt text-primary-500 mr-3"></i>
                         Outils bureautiques
                     </h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-file-word text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Word</span>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-5">
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-file-word text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">Word</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-file-excel text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Excel</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-file-excel text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">Excel</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-file-powerpoint text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">PowerPoint</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-file-powerpoint text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">PowerPoint</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-project-diagram text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Project</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-project-diagram text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">Project</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-code-branch text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">Git</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-code-branch text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">Git</span>
                         </div>
-                        <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex flex-col items-center">
-                            <i class="fas fa-code text-primary text-2xl mb-2"></i>
-                            <span class="text-sm text-center">VS Code</span>
+                        <div class="hover-card p-4 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-sm flex flex-col items-center transition-all duration-300 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3 text-primary-500 group-hover:scale-110 transform transition-transform duration-300">
+                                <i class="fas fa-code text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium text-center">VS Code</span>
                         </div>
                     </div>
                 </div>
@@ -465,141 +893,197 @@
         </div>
     </section>
 
-    <section id="projects" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Projets</h2>
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-50/70 to-transparent dark:from-primary-900/5 dark:to-transparent"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+                <div class="inline-block px-3 py-1 mb-3 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                    Réalisations
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center relative">
+                    Mes Projets
+                    <span class="block mt-2 mx-auto w-20 h-1 bg-primary-500 rounded-full"></span>
+                </h2>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md overflow-hidden animate-on-scroll">
-                    <div class="relative h-48 bg-primary/10 flex items-center justify-center">
-                        <i class="fas fa-car text-primary text-5xl"></i>
+                <div class="hover-card bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-56 bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                        <i class="fas fa-car text-white text-6xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">Voiture autonome suiveuse de ligne</h3>
-                        <ul class="space-y-2 mb-4">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">Voiture autonome suiveuse de ligne</h3>
+                        <ul class="space-y-3 mb-6">
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Etude sur les capteurs pour suivie la ligne et les moteurs DC</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Programmation Arduino</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Assemblage des composants de la voiture</span>
                             </li>
                         </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">Arduino</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">Capteurs IR</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">C++</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md overflow-hidden animate-on-scroll">
-                    <div class="relative h-48 bg-primary/10 flex items-center justify-center">
-                        <i class="fas fa-cloud-sun text-primary text-5xl"></i>
+                <div class="hover-card bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-56 bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                        <i class="fas fa-cloud-sun text-white text-6xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">Station météo intelligente</h3>
-                        <ul class="space-y-2 mb-4">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">Station météo intelligente</h3>
+                        <ul class="space-y-3 mb-6">
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Etude sur les capteurs météorologiques</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Programmation avec ESP32, Arduino, Raspberry Pi</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Création d'une interface pour l'affichage des données en temps réel et contrôle de l'arrosage</span>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>Création d'une interface pour l'affichage des données en temps réel</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Intégration des algorithmes d'intelligence artificielle pour prédire l'arrosage et les précipitations</span>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>Intégration des algorithmes d'IA pour prédire l'arrosage</span>
                             </li>
                         </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-medium">ESP32</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-medium">MQTT</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-medium">ThingSpeak</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-medium">Django</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md overflow-hidden animate-on-scroll">
-                    <div class="relative h-48 bg-primary/10 flex items-center justify-center">
-                        <i class="fas fa-robot text-primary text-5xl"></i>
+                <div class="hover-card bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-56 bg-gradient-to-r from-orange-400 to-amber-500 flex items-center justify-center relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                        <i class="fas fa-robot text-white text-6xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">Bras robotique 6 DOF</h3>
-                        <ul class="space-y-2 mb-4">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">Bras robotique 6 DOF</h3>
+                        <ul class="space-y-3 mb-6">
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                                <span>Modélisation et programmation d'un bras robotique pour un mini robot industriel</span>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>Modélisation et programmation d'un bras robotique industriel</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Utilisation de SolidWorks pour la conception</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Programmation avec Python (Robotics Toolbox MATLAB)</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Implémentation avec ROS (Gazebo, MoveIt)</span>
                             </li>
                         </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">SolidWorks</span>
+                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">Python</span>
+                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">ROS</span>
+                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">Gazebo</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md overflow-hidden animate-on-scroll">
-                    <div class="relative h-48 bg-primary/10 flex items-center justify-center">
-                        <i class="fas fa-code text-primary text-5xl"></i>
+                <div class="hover-card bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-56 bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                        <i class="fas fa-code text-white text-6xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">Application web de gestion de stock</h3>
-                        <ul class="space-y-2 mb-4">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">Application web de gestion de stock</h3>
+                        <ul class="space-y-3 mb-6">
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Développement d'une application web complète pour la gestion de stock</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Utilisation de Python et Django pour le backend</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Interface utilisateur interactive avec JavaScript</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
                                 <span>Développement avec VS Code</span>
                             </li>
                         </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs font-medium">Python</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs font-medium">Django</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs font-medium">JavaScript</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs font-medium">VS Code</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="py-16 md:py-24">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Expérience professionnelle</h2>
+    <section id="experience" class="py-20 relative">
+        <div class="absolute -right-24 bottom-24 w-72 h-72 bg-primary-100/50 dark:bg-primary-900/10 rounded-full blur-3xl"></div>
+        <div class="absolute -left-24 top-24 w-72 h-72 bg-secondary-lighter/30 dark:bg-secondary-lighter/5 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+                <div class="inline-block px-3 py-1 mb-3 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                    Parcours professionnel
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center relative">
+                    Expérience professionnelle
+                    <span class="block mt-2 mx-auto w-20 h-1 bg-primary-500 rounded-full"></span>
+                </h2>
+            </div>
             
-            <div class="bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
-                <div class="flex flex-col md:flex-row">
-                    <div class="md:w-1/4 mb-4 md:mb-0">
-                        <p class="text-primary font-medium">Août - Septembre 2024</p>
+            <div class="max-w-3xl mx-auto bg-white dark:bg-dark-card rounded-2xl shadow-soft p-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="inline-block px-3 py-1 mb-3 rounded-lg text-sm font-medium bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300">
+                            Août - Septembre 2024
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Stage d'initiation</h3>
+                        <p class="text-primary-500 font-medium">SICDA, Berrechid</p>
                     </div>
-                    <div class="md:w-3/4">
-                        <h3 class="text-xl font-semibold mb-2">Stage d'initiation</h3>
-                        <p class="text-gray-500 dark:text-gray-400 mb-4">SICDA, Berrechid</p>
-                        <ul class="space-y-2">
+                    <div class="md:w-2/3">
+                        <ul class="space-y-4">
                             <li class="flex items-start">
-                                <i class="fas fa-circle text-primary text-xs mt-1.5 mr-2"></i>
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mt-0.5 mr-4 text-primary-500">
+                                    <i class="fas fa-industry"></i>
+                                </div>
                                 <span>Observation et analyse de la chaîne du production de tuyau PE, depuis les matières premières jusqu'au produit fini.</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-circle text-primary text-xs mt-1.5 mr-2"></i>
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mt-0.5 mr-4 text-primary-500">
+                                    <i class="fas fa-tools"></i>
+                                </div>
                                 <span>Observation des différentes opérations pour la fabrication et réparation des pièces dans l'atelier mécanique.</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-circle text-primary text-xs mt-1.5 mr-2"></i>
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mt-0.5 mr-4 text-primary-500">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
                                 <span>Acquisition des concepts de résolution des problèmes dans l'atelier électrique, et analyse des différents composants électriques dans les armoires (variateurs, relais, disjoncteurs...).</span>
                             </li>
                         </ul>
@@ -609,98 +1093,180 @@
         </div>
     </section>
 
-<section id="contact" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold mb-12 text-center">Contact</h2>
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-50/70 to-transparent dark:from-primary-900/5 dark:to-transparent"></div>
         
-        <div class="max-w-3xl mx-auto bg-light-card dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 animate-on-scroll">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Téléphone -->
-                <div class="flex items-start">
-                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                        <i class="fas fa-phone text-primary"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">Téléphone</h3>
-                        <p>+212 659-584-879</p>
-                        <a href="tel:+212659584879" class="px-4 py-2 mt-2 inline-block bg-primary hover:bg-secondary text-white rounded-md transition-colors">
-                            Appeler
-                        </a>
-                    </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+                <div class="inline-block px-3 py-1 mb-3 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                    Restons en contact
                 </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center relative">
+                    Contact
+                    <span class="block mt-2 mx-auto w-20 h-1 bg-primary-500 rounded-full"></span>
+                </h2>
+                <p class="mt-4 text-center text-gray-600 dark:text-gray-300 max-w-xl">
+                    Intéressé par mon profil ? N'hésitez pas à me contacter pour discuter de projets ou d'opportunités.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="hover-card bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-32 bg-gradient-to-r from-primary-400 to-primary-600 relative">
+                            <div class="absolute -bottom-12 left-8">
+                                <div class="w-24 h-24 rounded-xl bg-white dark:bg-dark-card shadow-md flex items-center justify-center text-primary-500 text-3xl">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8 pt-16">
+                            <h3 class="text-2xl font-bold mb-2">Téléphone</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">N'hésitez pas à m'appeler pour discuter de vos projets.</p>
+                            <div class="flex items-center text-lg font-medium text-gray-700 dark:text-gray-300 mb-6">
+                                <i class="fas fa-phone-alt text-primary-500 mr-3"></i>
+                                <span>+212 659-584-879</span>
+                            </div>
+                            <a href="tel:+212659584879" class="inline-block px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition-colors">
+                                <span class="flex items-center">
+                                    <i class="fas fa-phone-alt mr-2"></i>
+                                    Appeler
+                                </span>
+                            </a>
+                        </div>
+                    </div>
 
-                <!-- Email -->
-                <div class="flex items-start">
-                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                        <i class="fas fa-envelope text-primary"></i>
+                    <div class="hover-card bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-32 bg-gradient-to-r from-purple-400 to-purple-600 relative">
+                            <div class="absolute -bottom-12 left-8">
+                                <div class="w-24 h-24 rounded-xl bg-white dark:bg-dark-card shadow-md flex items-center justify-center text-purple-500 text-3xl">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8 pt-16">
+                            <h3 class="text-2xl font-bold mb-2">Email</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">Envoyez-moi un email et je vous répondrai dans les plus brefs délais.</p>
+                            <div class="flex items-center text-lg font-medium text-gray-700 dark:text-gray-300 mb-6">
+                                <i class="fas fa-envelope text-purple-500 mr-3"></i>
+                                <span>kistassyassin@gmail.com</span>
+                            </div>
+                            <a href="mailto:kistassyassin@gmail.com" class="inline-block px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white font-medium rounded-lg transition-colors">
+                                <span class="flex items-center">
+                                    <i class="fas fa-envelope mr-2"></i>
+                                    Envoyer un Email
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">Email</h3>
-                        <p>kistassyassin@gmail.com</p>
-                        <a href="mailto:kistassyassin@gmail.com" class="px-4 py-2 mt-2 inline-block bg-primary hover:bg-secondary text-white rounded-md transition-colors">
-                            Envoyer un Email
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Localisation -->
-                <div class="flex items-start">
-                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                        <i class="fas fa-map-marker-alt text-primary"></i>
+                    <div class="hover-card bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-32 bg-gradient-to-r from-green-400 to-green-600 relative">
+                            <div class="absolute -bottom-12 left-8">
+                                <div class="w-24 h-24 rounded-xl bg-white dark:bg-dark-card shadow-md flex items-center justify-center text-green-500 text-3xl">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8 pt-16">
+                            <h3 class="text-2xl font-bold mb-2">Localisation</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">Basé à Berrechid, disponible pour des opportunités au Maroc.</p>
+                            <div class="flex items-center text-lg font-medium text-gray-700 dark:text-gray-300 mb-6">
+                                <i class="fas fa-map-pin text-green-500 mr-3"></i>
+                                <span>Berrechid, Maroc</span>
+                            </div>
+                            <a href="https://www.google.com/maps?q=Berrechid,+Maroc" target="_blank" class="inline-block px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors">
+                                <span class="flex items-center">
+                                    <i class="fas fa-map mr-2"></i>
+                                    Voir sur la carte
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">Localisation</h3>
-                        <p>Berrechid, Maroc</p>
-                        <a href="https://www.google.com/maps?q=Berrechid,+Maroc" target="_blank" class="px-4 py-2 mt-2 inline-block bg-primary hover:bg-secondary text-white rounded-md transition-colors">
-                            Voir sur la carte
-                        </a>
-                    </div>
-                </div>
 
-                <!-- LinkedIn -->
-                <div class="flex items-start">
-                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                        <i class="fab fa-linkedin text-primary"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">LinkedIn</h3>
-                        <p>Yassine KISTASS</p>
-                        <a href="https://www.linkedin.com/in/kistass-yassine-b80947274/" target="_blank" class="px-4 py-2 mt-2 inline-block bg-primary hover:bg-secondary text-white rounded-md transition-colors">
-                            Voir le profil
-                        </a>
+                    <div class="hover-card bg-white dark:bg-dark-card rounded-2xl shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                        <div class="h-32 bg-gradient-to-r from-blue-400 to-blue-600 relative">
+                            <div class="absolute -bottom-12 left-8">
+                                <div class="w-24 h-24 rounded-xl bg-white dark:bg-dark-card shadow-md flex items-center justify-center text-blue-500 text-3xl">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8 pt-16">
+                            <h3 class="text-2xl font-bold mb-2">LinkedIn</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">Connectons-nous sur LinkedIn pour des opportunités professionnelles.</p>
+                            <div class="flex items-center text-lg font-medium text-gray-700 dark:text-gray-300 mb-6">
+                                <i class="fab fa-linkedin text-blue-500 mr-3"></i>
+                                <span>Yassine KISTASS</span>
+                            </div>
+                            <a href="https://www.linkedin.com/in/kistass-yassine-b80947274/" target="_blank" class="inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors">
+                                <span class="flex items-center">
+                                    <i class="fab fa-linkedin-in mr-2"></i>
+                                    Voir le profil
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-gray-900 text-white pt-16 pb-8 relative">
+        <div class="absolute top-0 left-0 right-0">
+            <svg class="w-full h-auto transform rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+                <path fill="#F9FAFB" fill-opacity="1" d="M0,128L80,117.3C160,107,320,85,480,90.7C640,96,800,128,960,133.3C1120,139,1280,117,1360,106.7L1440,96L1440,150L1360,150C1280,150,1120,150,960,150C800,150,640,150,480,150C320,150,160,150,80,150L0,150Z" class="dark:hidden"></path>
+                <path fill="#111827" fill-opacity="1" d="M0,128L80,117.3C160,107,320,85,480,90.7C640,96,800,128,960,133.3C1120,139,1280,117,1360,106.7L1440,96L1440,150L1360,150C1280,150,1120,150,960,150C800,150,640,150,480,150C320,150,160,150,80,150L0,150Z" class="hidden dark:block"></path>
+            </svg>
+        </div>
+        
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="mb-4 md:mb-0">&copy; 2024 Yassine KISTASS. Tous droits réservés.</p>
-                <div class="flex space-x-4">
-                    <a href="https://www.linkedin.com/in/kistass-yassine-b80947274/" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
-                        <i class="fab fa-twitter"></i>
-                    </a>
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <h3 class="text-3xl font-bold mb-4 text-primary-400">YK.</h3>
+                    <p class="max-w-xs text-gray-400">Futur Ingénieur en génie mécatronique et systèmes intelligents, passionné d'innovation technologique.</p>
                 </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-4 mb-6">
+                        <a href="https://www.linkedin.com/in/kistass-yassine-b80947274/" target="_blank" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-500 transition-colors duration-300">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-500 transition-colors duration-300">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-500 transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300">Retour en haut</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-500">&copy; 2024 Yassine KISTASS. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.classList.toggle('active');
         });
 
         // Close mobile menu when clicking on a link
@@ -708,6 +1274,29 @@
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                mobileMenuButton.classList.remove('active');
+            });
+        });
+
+        // Navigation scroll behavior
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
@@ -722,6 +1311,18 @@
         themeToggle.addEventListener('click', toggleDarkMode);
         themeToggleMobile.addEventListener('click', toggleDarkMode);
 
+        // Sticky header effect
+        const header = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
         // Skill bar animation
         function animateSkillBars() {
             const skillBars = document.querySelectorAll('.skill-progress');
@@ -731,29 +1332,21 @@
             });
         }
 
-        // Animate on scroll
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
+        // Animate skill bars when they come into view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
                     if (entry.target.querySelector('.skill-progress')) {
                         setTimeout(() => {
                             animateSkillBars();
-                        }, 200);
+                        }, 300);
                     }
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-        animatedElements.forEach(element => {
-            observer.observe(element);
+        document.querySelectorAll('.skill-bar').forEach(element => {
+            observer.observe(element.parentElement);
         });
     </script>
 </body>
